@@ -59,23 +59,6 @@
             margin-bottom: 0.5rem;
         }
 
-        nav {
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 0.8rem;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -102,21 +85,17 @@
             margin-bottom: 0.5rem;
         }
 
-        body:not(.dark-mode) .card h3 {
-            color: var(--primary);
-        }
-
-        body.dark-mode .card h3 {
-            color: var(--text-dark);
-        }
-
         .card h3 a {
-            color: inherit;
+            color: var(--primary);
             text-decoration: none;
         }
 
         .card h3 a:hover {
             text-decoration: underline;
+        }
+
+        body.dark-mode .card h3 a {
+            color: var(--text-dark);
         }
 
         .card p {
@@ -160,19 +139,6 @@
         <h2>Meine Projekte im Überblick</h2>
         <p>Wählen Sie eine Kategorie oder laden Sie die zugehörige Projektübersicht als PDF herunter.</p>
     </section>
-
-    <nav>
-        <a href="https://sites.google.com/view/projekte2/startseite">Startseite</a>
-        <a href="https://sites.google.com/view/projekte2/energieaudits">Energieaudits</a>
-        <a href="https://sites.google.com/view/projekte2/energiemanagement">Energiemanagement</a>
-        <a href="https://sites.google.com/view/projekte2/nachhaltigkeitsmanagement">Nachhaltigkeit</a>
-        <a href="https://sites.google.com/view/projekte2/cbam">CBAM</a>
-        <a href="https://sites.google.com/view/projekte2/eu-ets-1">EU-ETS 1</a>
-        <a href="https://sites.google.com/view/projekte2/stromnev">StromNEV</a>
-        <a href="https://sites.google.com/view/projekte2/behg-eu-ets-2">BEHG & EU-ETS 2</a>
-        <a href="https://sites.google.com/view/projekte2/schuleuni">Schule/Uni</a>
-        <a href="https://sites.google.com/view/projekte2/weiteres">Weiteres</a>
-    </nav>
 
     <section class="card-container">
         <div class="card">
