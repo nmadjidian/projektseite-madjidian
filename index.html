@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,27 +5,77 @@
     <title>Projektübersicht</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --bg-light: #f4f7fa;
+            --bg-dark: #1e1e1e;
+            --text-light: #333;
+            --text-dark: #eee;
+            --card-bg-light: white;
+            --card-bg-dark: #2b2b2b;
+            --primary: #1e446d;
+            --primary-dark: #2d5b91;
+        }
+
         body {
             font-family: "Segoe UI", sans-serif;
-            background-color: #f4f7fa;
             margin: 0;
             padding: 0;
-            color: #333;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.3s ease;
         }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
         header {
-            background-color: #1e446d;
+            background-color: var(--primary);
             color: white;
             padding: 1rem;
             text-align: center;
             font-size: 2rem;
+            position: relative;
         }
+
+        #toggle-darkmode {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
         .intro {
             text-align: center;
             padding: 2rem;
         }
+
         .intro h2 {
             margin-bottom: 0.5rem;
         }
+
+        nav {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -34,116 +83,152 @@
             gap: 1.5rem;
             padding: 2rem;
         }
+
         .card {
-            background: white;
+            background: var(--card-bg-light);
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             padding: 1.5rem;
             width: 300px;
             text-align: center;
+            transition: background 0.3s;
         }
+
+        body.dark-mode .card {
+            background: var(--card-bg-dark);
+        }
+
         .card h3 {
-            color: #1e446d;
+            margin-bottom: 0.5rem;
         }
+
+        body:not(.dark-mode) .card h3 {
+            color: var(--primary);
+        }
+
+        body.dark-mode .card h3 {
+            color: var(--text-dark);
+        }
+
+        .card h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card h3 a:hover {
+            text-decoration: underline;
+        }
+
         .card p {
             font-size: 0.95rem;
         }
-        .card a {
+
+        .card a.download {
             display: inline-block;
             margin-top: 1rem;
             padding: 0.6rem 1.2rem;
-            background-color: #1e446d;
+            background-color: var(--primary);
             color: white;
             border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
         }
-        .card a:hover {
-            background-color: #2d5b91;
+
+        .card a.download:hover {
+            background-color: var(--primary-dark);
         }
+
         footer {
             text-align: center;
             font-size: 0.8rem;
             color: #777;
             margin: 2rem 0;
         }
+
+        body.dark-mode footer {
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
-    <header>PROJEKTE</header>
+    <header>
+        PROJEKTE
+        <button id="toggle-darkmode" title="Dark Mode umschalten">🌗</button>
+    </header>
+
     <section class="intro">
         <h2>Meine Projekte im Überblick</h2>
         <p>Wählen Sie eine Kategorie oder laden Sie die zugehörige Projektübersicht als PDF herunter.</p>
     </section>
-    <nav style="background-color:#1e446d; color:white; padding:0.8rem; text-align:center;">
-        <a href="https://sites.google.com/view/projekte2/startseite" style="color:white; margin: 0 10px;">Startseite</a>
-        <a href="https://sites.google.com/view/projekte2/energieaudits" style="color:white; margin: 0 10px;">Energieaudits</a>
-        <a href="https://sites.google.com/view/projekte2/energiemanagement" style="color:white; margin: 0 10px;">Energiemanagement</a>
-        <a href="https://sites.google.com/view/projekte2/nachhaltigkeitsmanagement" style="color:white; margin: 0 10px;">Nachhaltigkeit</a>
-        <a href="https://sites.google.com/view/projekte2/cbam" style="color:white; margin: 0 10px;">CBAM</a>
-        <a href="https://sites.google.com/view/projekte2/eu-ets-1" style="color:white; margin: 0 10px;">EU-ETS 1</a>
-        <a href="https://sites.google.com/view/projekte2/stromnev" style="color:white; margin: 0 10px;">StromNEV</a>
-        <a href="https://sites.google.com/view/projekte2/behg-eu-ets-2" style="color:white; margin: 0 10px;">BEHG & EU-ETS 2</a>
-        <a href="https://sites.google.com/view/projekte2/schuleuni" style="color:white; margin: 0 10px;">Schule/Uni</a>
-        <a href="https://sites.google.com/view/projekte2/weiteres" style="color:white; margin: 0 10px;">Weiteres</a>
+
+    <nav>
+        <a href="https://sites.google.com/view/projekte2/startseite">Startseite</a>
+        <a href="https://sites.google.com/view/projekte2/energieaudits">Energieaudits</a>
+        <a href="https://sites.google.com/view/projekte2/energiemanagement">Energiemanagement</a>
+        <a href="https://sites.google.com/view/projekte2/nachhaltigkeitsmanagement">Nachhaltigkeit</a>
+        <a href="https://sites.google.com/view/projekte2/cbam">CBAM</a>
+        <a href="https://sites.google.com/view/projekte2/eu-ets-1">EU-ETS 1</a>
+        <a href="https://sites.google.com/view/projekte2/stromnev">StromNEV</a>
+        <a href="https://sites.google.com/view/projekte2/behg-eu-ets-2">BEHG & EU-ETS 2</a>
+        <a href="https://sites.google.com/view/projekte2/schuleuni">Schule/Uni</a>
+        <a href="https://sites.google.com/view/projekte2/weiteres">Weiteres</a>
     </nav>
 
     <section class="card-container">
         <div class="card">
-            <h3>Energieaudits</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/energieaudits">Energieaudits</a></h3>
             <p>LED, Einsparpotenziale, Gebäudebewertung u. v. m.</p>
-            <a href="https://sites.google.com/view/projekte2/energieaudits">Zur Seite</a><br><br>
-            <a href="energieaudits.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20Energieaudits.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>Energiemanagement</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/energiemanagement">Energiemanagement</a></h3>
             <p>ISO 50001, Zieldefinition, Monitoring, Audits u. v. m.</p>
-            <a href="https://sites.google.com/view/projekte2/energiemanagement">Zur Seite</a><br><br>
-            <a href="energiemanagement.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20Energiemanagement.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>Nachhaltigkeit</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/nachhaltigkeitsmanagement">Nachhaltigkeit</a></h3>
             <p>GRI, CSRD, Lieferkette, ESG, CO₂-Bilanz etc.</p>
-            <a href="https://sites.google.com/view/projekte2/nachhaltigkeitsmanagement">Zur Seite</a><br><br>
-            <a href="nachhaltigkeit.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20Nachhaltigkeitsmanagement.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>CBAM</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/cbam">CBAM</a></h3>
             <p>Grenzausgleichssystem und Berichtspflichten</p>
-            <a href="https://sites.google.com/view/projekte2/cbam">Zur Seite</a><br><br>
-            <a href="cbam.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20CBAM.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>EU-ETS 1</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/eu-ets-1">EU-ETS 1</a></h3>
             <p>Emissionshandelssystem der Industrie</p>
-            <a href="https://sites.google.com/view/projekte2/eu-ets-1">Zur Seite</a><br><br>
-            <a href="eu-ets-1.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20EU-ETS%201.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>StromNEV</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/stromnev">StromNEV</a></h3>
             <p>Netzentgeltsysteme und Ausnahmen</p>
-            <a href="https://sites.google.com/view/projekte2/stromnev">Zur Seite</a><br><br>
-            <a href="stromnev.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20StromNEV.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>BEHG & EU-ETS 2</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/behg-eu-ets-2">BEHG & EU-ETS 2</a></h3>
             <p>Gebäudesektor, Verkehr & neue Emissionshandelspflichten</p>
-            <a href="https://sites.google.com/view/projekte2/behg-eu-ets-2">Zur Seite</a><br><br>
-            <a href="behg-eu-ets-2.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20BEHG%20%26%20EU-ETS%202.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>Schule/Uni</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/schuleuni">Schule/Uni</a></h3>
             <p>Wissenschaftliche Arbeiten, Vorträge, Projekte</p>
-            <a href="https://sites.google.com/view/projekte2/schuleuni">Zur Seite</a><br><br>
-            <a href="schuleuni.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20Schule_Uni.pdf">PDF Download</a>
         </div>
         <div class="card">
-            <h3>Weiteres</h3>
+            <h3><a href="https://sites.google.com/view/projekte2/weiteres">Weiteres</a></h3>
             <p>Spezialthemen, Tools, freie Arbeiten</p>
-            <a href="https://sites.google.com/view/projekte2/weiteres">Zur Seite</a><br><br>
-            <a href="weiteres.pdf">PDF Download</a>
+            <a class="download" href="https://github.com/nmadjidian/pdfs/raw/main/Projekte%20-%20Weiteres.pdf">PDF Download</a>
         </div>
     </section>
+
     <footer>© 2025 Nasser Madjidian | Projektübersicht</footer>
+
+    <script>
+        const toggle = document.getElementById("toggle-darkmode");
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+    </script>
 </body>
 </html>
